@@ -56,18 +56,31 @@ cd /path/to/RiderNativeRenameMcp
 Build outputs:
 
 - Rider plugin zip:
-  `output/ReSharperPlugin.RiderNativeRenameMcp-9999.0.0.zip`
+  `output/ReSharperPlugin.RiderNativeRenameMcp-1.0.0.zip`
 - MCP launcher on Linux or WSL:
   `agent-mcp/build/install/rider-native-rename-mcp/bin/rider-native-rename-mcp`
 - MCP launcher on Windows:
   `agent-mcp/build/install/rider-native-rename-mcp/bin/rider-native-rename-mcp.bat`
+
+## Download
+
+Prebuilt binaries are available from GitHub Releases:
+
+https://github.com/Tairitsua/rider-native-rename-mcp/releases
+
+Typical assets:
+
+- `ReSharperPlugin.RiderNativeRenameMcp-1.0.0.zip`
+  Install this zip directly in Rider through `Settings` -> `Plugins` -> `Install Plugin from Disk...`
+- `rider-native-rename-mcp-1.0.0-agent.tar.gz`
+  Contains the prebuilt MCP companion with launch scripts and bundled libraries
 
 ## Install The Rider Plugin
 
 1. Build the plugin zip with `./gradlew buildPlugin`.
 2. In Rider, open `Settings` -> `Plugins`.
 3. Click the gear icon -> `Install Plugin from Disk...`.
-4. Select `output/ReSharperPlugin.RiderNativeRenameMcp-9999.0.0.zip`.
+4. Select `output/ReSharperPlugin.RiderNativeRenameMcp-1.0.0.zip`.
 5. Restart Rider.
 6. Open the target solution or project in Rider.
 

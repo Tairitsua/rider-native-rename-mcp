@@ -8,3 +8,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added a Rider-side local bridge service for AI-driven rename requests.
 - Added a stdio MCP companion with `rider_native_status` and `rider_native_rename`.
 - Added shared bridge contracts and WSL/Windows path normalization helpers.
+- Added BOM-tolerant discovery parsing and a Windows `curl.exe` fallback for WSL bridge requests.
+- Published prebuilt release artifacts so users can install the plugin without building locally.

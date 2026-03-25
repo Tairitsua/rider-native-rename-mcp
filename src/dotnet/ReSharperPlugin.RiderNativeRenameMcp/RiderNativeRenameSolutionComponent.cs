@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,8 +33,8 @@ public sealed class RiderNativeRenameSolutionComponent : IStartupActivity
     private const string AuthHeader = "X-Rider-Native-Rename-Token";
     private const string DiscoveryDirectoryName = ".idea";
     private const string DiscoveryFileName = "rider-native-rename-mcp.json";
-    private const string PluginVersion = "0.2.1";
     private static readonly TimeSpan RenameDispatchTimeout = TimeSpan.FromSeconds(30);
+    private static readonly string PluginVersion = ResolvePluginVersion();
 
     private readonly Lifetime myLifetime;
     private readonly ISolution mySolution;
@@ -525,6 +526,29 @@ public sealed class RiderNativeRenameSolutionComponent : IStartupActivity
     private static bool HttpMethodsEqual(string? left, string right)
     {
         return string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string ResolvePluginVersion()
+    {
+        var assembly = typeof(RiderNativeRenameSolutionComponent).Assembly;
+        var informationalVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+        if (!string.IsNullOrWhiteSpace(informationalVersion))
+        {
+            var nonEmptyInformationalVersion = informationalVersion!;
+            var separatorIndex = nonEmptyInformationalVersion.IndexOf('+');
+            var normalizedInformationalVersion = separatorIndex >= 0
+                ? nonEmptyInformationalVersion.Substring(0, separatorIndex)
+                : nonEmptyInformationalVersion;
+            if (!string.IsNullOrWhiteSpace(normalizedInformationalVersion))
+            {
+                return normalizedInformationalVersion;
+            }
+        }
+
+        var version = assembly.GetName().Version;
+        return version == null
+            ? "unknown"
+            : $"{version.Major}.{version.Minor}.{version.Build}";
     }
 
     private static void ValidateCommand(RenameCommand command)
