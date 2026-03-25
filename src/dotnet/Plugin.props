@@ -1,0 +1,20 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <!-- See https://www.nuget.org/packages/JetBrains.ReSharper.SDK -->
+    <!-- Keep in sync with ProductVersion in gradle.properties -->
+    <SdkVersion>2025.3.2</SdkVersion>
+
+    <Title>RiderNativeRenameMcp</Title>
+    <Description>Expose Rider's native rename workflow to AI agents.</Description>
+
+    <Authors>MoLibrary</Authors>
+    <Copyright>Copyright $([System.DateTime]::Now.Year) Maintainers of RiderNativeRenameMcp</Copyright>
+    <PackageTags>resharper plugin</PackageTags>
+
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageIconUrl></PackageIconUrl>
+  </PropertyGroup>
+
+</Project>
